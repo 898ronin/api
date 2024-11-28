@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>Lista de Proyectos</h1>
+<a href="{% url 'proyecto_create' %}" class="btn btn-success mt-4">Crear Proyecto</a>
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>RUT</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for proyecto in proyectos %}
+        <tr>
+            <td>{{ proyecto.id }}</td>
+            <td>{{ proyecto.nombre_proyecto }}</td>
+            <td>{{ proyecto.rut }}</td>
+            <td>
+                <a href="{% url 'proyecto_update' proyecto.id %}" class="btn btn-primary btn-sm">Editar</a>
+                <a href="{% url 'proyecto_delete' proyecto.id %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
